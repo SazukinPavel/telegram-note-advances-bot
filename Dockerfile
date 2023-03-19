@@ -2,14 +2,15 @@ FROM node
 
 WORKDIR /app
 
-COPY package.json .
+COPY package.json ./
+COPY tsconfig.json ./
+
+COPY ./src ./app
 
 RUN npm i
+RUN npm run build
 
-COPY ./dist .
 
 EXPOSE 3000
 
-CMD ["ls"]
-
-CMD ["node","main.js"]
+CMD ["node","./dist/main.js"]
