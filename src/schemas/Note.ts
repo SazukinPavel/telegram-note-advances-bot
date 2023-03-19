@@ -1,5 +1,17 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, SchemaDefinition } from "mongoose";
 
-const noteSchema = new Schema({ text: String }, { timestamps: true });
+export const NoteDefinition: SchemaDefinition = {
+  text: String,
+  userId: Number,
+  remindDate: Date,
+};
 
-export const Note = model("Note", noteSchema);
+const noteSchema = new Schema(NoteDefinition, { timestamps: true });
+
+export const NoteModel = model("Note", noteSchema);
+
+export interface Note {
+  text?: string;
+  remindDate?: Date;
+  userId?: number;
+}
